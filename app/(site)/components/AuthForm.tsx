@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/inputs/Input";
 import { useCallback, useState } from "react";
@@ -37,6 +38,7 @@ const AuthForm = () => {
     setIsLoading(true);
 
     if (variant == "REGISTER") {
+      axios.post("/api/register", data);
     }
 
     if (variant == "LOGIN") {
@@ -128,19 +130,21 @@ const AuthForm = () => {
           </div>
         </div>
 
-        <div className="
+        <div
+          className="
         flex gap-2 
         justify-center 
         text-sm mt-6 px-2 
-        text-gray-500">
-            <div>
-              {variant == "LOGIN" ? 'New to Messenger?' : 'Already have an account?'}
-            </div>
-            <div
-              onClick={toggleVariant}
-              className="underline cursor-pointer">
-                {variant == "LOGIN" ? 'Create an account' : 'Login'}
-            </div>
+        text-gray-500"
+        >
+          <div>
+            {variant == "LOGIN"
+              ? "New to Messenger?"
+              : "Already have an account?"}
+          </div>
+          <div onClick={toggleVariant} className="underline cursor-pointer">
+            {variant == "LOGIN" ? "Create an account" : "Login"}
+          </div>
         </div>
       </div>
     </div>
